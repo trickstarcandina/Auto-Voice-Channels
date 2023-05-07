@@ -90,19 +90,25 @@ def write_json(fp, data, indent=1):
     cfg.WRITES_IN_PROGRESS.remove(fp)
 
 
+def convert_env_to_json():
+    content = "".join(["{","\n","\"admin_id\"",":\"",os.getenv('admin_id'),"\",\n","\"client_id\"",":\"",os.getenv('client_id'),"\",\n","\"log_timezone\"",":\"",os.getenv('log_timezone'),"\",\n","\"token\"",":\"",os.getenv('token'),"\"\n","}"])
+    print(json.loads(content))
+    return json.loads(content)
+
 @func_timer()
 def get_config():
-    cf = os.path.join(cfg.SCRIPT_DIR, "config.json")
-    if not os.path.exists(cf):
-        print(
-            "Config file doesn't exist!\n"
-            "You need to create a 'config.json' file next to this script and fill in some details like your token.\n"
-            "Read the instructions on GitHub: https://github.com/gregzaal/Auto-Voice-Channels"
-        )
-        import sys
+    # cf = os.path.join(cfg.SCRIPT_DIR, "config.json")
+    # if not os.path.exists(cf):
+    #     print(
+    #         "Config file doesn't exist!\n"
+    #         "You need to create a 'config.json' file next to this script and fill in some details like your token.\n"
+    #         "Read the instructions on GitHub: https://github.com/gregzaal/Auto-Voice-Channels"
+    #     )
+    #     import sys
 
-        sys.exit(0)
-    return read_json(cf)
+    #     sys.exit(0)
+    # return read_json(cf)
+    return convert_env_to_json()
 
 
 @func_timer()
