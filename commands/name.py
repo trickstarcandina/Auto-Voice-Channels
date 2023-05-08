@@ -41,7 +41,6 @@ command = Cmd(
     execute=execute,
     help_text=help_text,
     params_required=1,
-    gold_required=True,
     admin_required=False,
     voice_required=True,
     creator_only=True,
